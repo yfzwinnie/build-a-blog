@@ -47,7 +47,7 @@ class User(db.Model):
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'register']
-    if request.endpoint not in allowed_routes and 'email' not in session:
+    if request.endpoint not in allowed_routes and 'email' not in session and '/static/' not in request.path:
         return redirect('/login')
 
 @app.route('/login', methods=['POST','GET'])
@@ -137,6 +137,12 @@ def blog():
         id = request.args.get('id')
         blog = Blog.query.filter_by(id=id).first()
         return render_template('blogpost.html', blog=blog )
+
+@app.route("/")
+def index():
+    owner = User.query.filter_by(email=session['email']).first()
+    blogs = Blog.query.filter_by(owner=owner).order_by(Blog.id).all()
+    return render_template('blog.html', blogs=blogs)
 
 if __name__ == '__main__':
     app.run()
