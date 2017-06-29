@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
-  </head>
-  <body>
-    <div class="navigation">
-      <a href="{{ url_for('logout') }}">Logout</a>
-      <a href="{{ url_for('new_post') }}">Add a Blog Entry</a>
-      <a href="{{ url_for('blog') }}">Main Blog Page</a>
-    </div>
+</head>
+<body>
+<div class="navigation">
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <a href="{{ url_for('new_post') }}">Add a Blog Entry</a>
+    <a href="{{ url_for('blog') }}">Main Blog Page</a>
+</div>
 
-    {% with messages = get_flashed_messages(with_categories=True) %}
-      <ul>
-      {% for category, message in messages%}
-        <li class="flash-message">{{message}}</li>
-      {% endfor %}
-      </ul>
-    {% endwith %}
+{% with messages = get_flashed_messages(with_categories=True) %}
+    <ul>
+        {% for category, message in messages %}
+            <li class="flash-message">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endwith %}
 
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 
-  </body>
+</body>
 </html>

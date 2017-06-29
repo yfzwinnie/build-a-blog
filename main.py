@@ -2,27 +2,33 @@ from flask import Flask, request, redirect, render_template, session, flash, url
 from forms import SignupForm, LoginForm, BlogForm
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
+from datetime import datetime
 
-app= Flask(__name__)
 
-app.config['DEBUG']=True
+app = Flask(__name__)
+app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:pooh@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
-
 db = SQLAlchemy(app)
+app.secret_key = 'super_secret_key'
 
-app.secret_key = '88F~AD=hU=+/e42%!rsC>q4Wr})UDy'
 
 class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column (db.String(120))
+    name = db.Column(db.String(120))
     post = db.Column(db.String(500))
+    date = db.Column(db.DateTime)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, name, post, owner):
+    def __init__(self, name, post, owner, date=None):
         self.name = name
         self.post = post
         self.owner = owner
+        if date is None:
+            date = datetime.utcnow()
+        self.date = date
+
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,7 +36,7 @@ class User(db.Model):
     lastname = db.Column(db.String(100))
     email = db.Column(db.String(120), unique=True)
     pwdhash = db.Column(db.String(120))
-    blogs = db.relationship('Blog',backref='owner')
+    blogs = db.relationship('Blog', backref='owner')
 
     def __init__(self, firstname, lastname, email, password):
         self.firstname = firstname
@@ -44,19 +50,20 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.pwdhash, password)
 
+
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'register']
     if request.endpoint not in allowed_routes and 'email' not in session and '/static/' not in request.path:
         return redirect('/login')
 
-@app.route('/login', methods=['POST','GET'])
-def login():
 
+@app.route('/login', methods=['POST', 'GET'])
+def login():
     form = LoginForm()
 
     if request.method == "POST":
-        if form.validate() == False:
+        if not form.validate():
             return render_template('login.html', form=form)
         else:
             email = form.email.data
@@ -72,11 +79,12 @@ def login():
 
     return render_template('login.html', form=form)
 
-@app.route('/signup',methods=['POST','GET'])
+
+@app.route('/signup', methods=['POST', 'GET'])
 def register():
     form = SignupForm()
     if request.method == 'POST':
-        if form.validate() == False:
+        if not form.validate():
             return render_template('signup.html', form=form)
         else:
 
@@ -100,11 +108,11 @@ def register():
     return render_template('signup.html', form=form)
 
 
-@app.route('/newpost', methods=['POST','GET'])
+@app.route('/newpost', methods=['POST', 'GET'])
 def new_post():
     form = BlogForm()
     if request.method == 'POST':
-        if form.validate() == False:
+        if not form.validate():
             return render_template('newpost.html', form=form)
         else:
 
@@ -118,7 +126,8 @@ def new_post():
 
             return redirect(url_for('blog', id=new_blog.id))
 
-    return render_template('newpost.html', form = form, title="Add a Blog Entry")
+    return render_template('newpost.html', form=form, title="Add a Blog Entry")
+
 
 @app.route('/logout')
 def logout():
@@ -126,9 +135,9 @@ def logout():
     flash("Thanks for visiting. You are now logged out.")
     return redirect('/login')
 
+
 @app.route("/blog")
 def blog():
-
     if not request.args:
         owner = User.query.filter_by(email=session['email']).first()
         blogs = Blog.query.filter_by(owner=owner).order_by(Blog.id).all()
@@ -136,13 +145,18 @@ def blog():
     else:
         id = request.args.get('id')
         blog = Blog.query.filter_by(id=id).first()
-        return render_template('blogpost.html', blog=blog )
+        return render_template('blogpost.html', blog=blog)
+
 
 @app.route("/")
 def index():
     owner = User.query.filter_by(email=session['email']).first()
+
+    # you can add the date descending order_by here in place of filtering by blog id
+    # both methods do the same thing, but it's nice to know how to timestamp your entries
     blogs = Blog.query.filter_by(owner=owner).order_by(Blog.id).all()
     return render_template('blog.html', blogs=blogs)
+
 
 if __name__ == '__main__':
     app.run()
