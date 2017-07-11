@@ -1,25 +1,27 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <main class="container">
-    <div>
-      <h1>Build a Blog</h1>
-    <hr />
+    <main class="container">
+        <div>
+            <h1>Build a Blog</h1>
+            <hr/>
 
-        {% if blogs|length == 0 %}
-        <p>No blogs yet</p>
-        {% else %}
+            {% if blogs|length == 0 %}
+                <p>No blogs yet</p>
+            {% else %}
 
-          <ul>
-            {% for blog in blogs %}
-            <li><a href="{{ url_for('blog', id=blog.id) }}">{{blog.name}}</a>
-              <ul><li class="blog-post-content">{{blog.post}}</li></ul>
-            </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+                <ul>
+                    {% for blog in blogs %}
+                        <li><a href="{{ url_for('blog', id=blog.id) }}">{{ blog.name }}</a>
+                            <ul>
+                                <li class="blog-post-content">{{ blog.post }}</li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-        <hr />
-    </div>
-  </main>
+            <hr/>
+        </div>
+    </main>
 {% endblock %}

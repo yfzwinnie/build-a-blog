@@ -1,36 +1,36 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <main class="container">
+    <main class="container">
 
-      <h1>Add a Blog Entry</h1>
-      <form method="POST" action="/newpost">
-        {{ form.hidden_tag() }} <!--hidden tag is to protect against CSRF attacks-->
-        <div>
-          {% if form.blog_title.errors %}
-            {% for error in form.blog_title.errors %}
-              <p class="error-message">{{ error }}</p>
-            {% endfor %}
-          {% endif %}
+        <h1>Add a Blog Entry</h1>
+        <form method="POST" action="/newpost">
+            {{ form.hidden_tag() }} <!--hidden tag is to protect against CSRF attacks-->
+            <div>
+                {% if form.blog_title.errors %}
+                    {% for error in form.blog_title.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
 
-          {% if form.blog_post.errors %}
-            {% for error in form.blog_post.errors %}
-              <p class="error-message">{{ error }}</p>
-            {% endfor %}
-          {% endif %}
-        </div>
-        <div class="forms">
-          {{ form.blog_title.label }}
-          {{ form.blog_title }}
-        </div>
+                {% if form.blog_post.errors %}
+                    {% for error in form.blog_post.errors %}
+                        <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="forms">
+                {{ form.blog_title.label }}
+                {{ form.blog_title }}
+            </div>
 
-        <div id="blog-post">
-          {{ form.blog_post.label }}
-          {{ form.blog_post }}
-        </div>
+            <div id="blog-post">
+                {{ form.blog_post.label }}
+                {{ form.blog_post }}
+            </div>
 
-        {{ form.submit(class="btn-primary") }}
-      </form>
-  </main>
+            {{ form.submit(class="btn-primary") }}
+        </form>
+    </main>
 
 {% endblock %}
