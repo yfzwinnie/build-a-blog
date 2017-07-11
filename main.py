@@ -2,11 +2,12 @@ from flask import Flask, request, redirect, render_template, session, flash, url
 from forms import SignupForm, LoginForm, BlogForm
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
+import os
 
 app= Flask(__name__)
 
 app.config['DEBUG']=True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/build_a_blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('mysql+pymysql://build-a-blog:pooh@localhost:8889/build-a-blog')
 app.config['SQLALCHEMY_ECHO'] = True
 
 db = SQLAlchemy(app)
