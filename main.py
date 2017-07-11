@@ -150,9 +150,6 @@ def blog():
 @app.route("/")
 def index():
     owner = User.query.filter_by(email=session['email']).first()
-
-    # you can add the date descending order_by here in place of filtering by blog id
-    # both methods do the same thing, but it's nice to know how to timestamp your entries
     blogs = Blog.query.filter_by(owner=owner).order_by(Blog.id).all()
     return render_template('blog.html', blogs=blogs)
 
