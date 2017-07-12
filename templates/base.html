@@ -7,8 +7,10 @@
 <body>
 <div class="navigation">
     <a href="{{ url_for('logout') }}">Logout</a>
+    <a href="{{ url_for('login') }}">Login</a>
     <a href="{{ url_for('new_post') }}">Add a Blog Entry</a>
-    <a href="{{ url_for('blog') }}">Main Blog Page</a>
+    <a href="{{ url_for('blog') }}">All Posts</a>
+    <a href="{{ url_for('index') }}">Home</a>
 </div>
 
 {% with messages = get_flashed_messages(with_categories=True) %}
