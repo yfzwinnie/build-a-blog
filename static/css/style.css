@@ -121,5 +121,9 @@
   }
 
   .blog-post-content {
-    margin: 5px 0 30px -40px;
+    margin: 5px 0 10px -40px;
+  }
+
+  small {
+    float: right;
   }

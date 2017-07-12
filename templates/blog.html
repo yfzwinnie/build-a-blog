@@ -4,7 +4,6 @@
     <main class="container">
         <div>
             <h1>Build a Blog</h1>
-            <hr/>
 
             {% if blogs|length == 0 %}
                 <p>No blogs yet</p>
@@ -15,18 +14,18 @@
                         <li><a href="{{ url_for('blog', id=blog.id) }}">{{ blog.name }}</a>
                             <ul>
                                 <li class="blog-post-content">{{ blog.post }}</li>
-                                <li>Written by:
-                                    <a href="{{ url_for('blog', user=blog.owner.id )}}">{{ blog.owner.username }}</a>
-                                </li>
-                                <li>Posted on: {{ blog.timestamp }}
-                                </li>
+                                  <div><small>Written by:
+                                    <a href="{{ url_for('blog', user=blog.owner.id )}}" class="author">{{ blog.owner.username }}</a>
+                                    | Posted on: {{ blog.timestamp }}</small>
+                                  </div>
                             </ul>
                         </li>
+                      <br>
+                      <hr/>
                     {% endfor %}
                 </ul>
             {% endif %}
 
-            <hr/>
         </div>
     </main>
 {% endblock %}
