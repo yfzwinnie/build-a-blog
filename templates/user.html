@@ -3,7 +3,7 @@
 {% block content %}
     <main class="container">
         <div>
-            <h1>Build a Blog</h1>
+            <h1>{{user.username}}</h1>
             <hr/>
 
             {% if blogs|length == 0 %}
@@ -15,11 +15,6 @@
                         <li><a href="{{ url_for('blog', id=blog.id) }}">{{ blog.name }}</a>
                             <ul>
                                 <li class="blog-post-content">{{ blog.post }}</li>
-                                <li>Written by:
-                                    <a href="{{ url_for('blog', user=blog.owner.id )}}">{{ blog.owner.username }}</a>
-                                </li>
-                                <li>Posted on: {{ blog.timestamp }}
-                                </li>
                             </ul>
                         </li>
                     {% endfor %}
