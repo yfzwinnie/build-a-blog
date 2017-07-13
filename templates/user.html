@@ -1,10 +1,9 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block content %}
     <main class="container">
         <div>
-            <h1>{{user.username}}</h1>
-
+            <h1>{{ user.username }}</h1>
 
             {% if blogs|length == 0 %}
                 <p>No blogs yet</p>
@@ -20,7 +19,6 @@
                     {% endfor %}
                 </ul>
             {% endif %}
-
 
         </div>
     </main>
