@@ -1,26 +1,26 @@
 /******GENERAL********/
-  .container {
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 5%;
     font-family: arial;
     font-size: 1em;
-  }
+}
 
-  .error-message {
+.error-message {
     color: #c11313;
     font-size: .75em;
     margin: 0 auto;
     padding: 0 auto;
     background-color: #efeec9;
-  }
+}
 
-  a, a:visited {
+a, a:visited {
     text-decoration: none;
     color: #778899;
-  }
+}
 
-  .btn-primary {
+.btn-primary {
     font-family: sans-serif;
     padding: 5px 10px;
     border-radius: 5px;
@@ -31,38 +31,39 @@
     clear: both;
     font-size: 1.2em;
     color: #fff;
-  }
+}
 
-  .flash-message {
+.flash-message {
     color: #219ef2;
     clear: both;
     border-style: dotted;
     font-family: Arial;
     text-align: center;
-  }
-  /******NAVIGATION******/
-  .navigation a {
+}
+
+/******NAVIGATION******/
+.navigation a {
     float: right;
     margin: 10px auto;
     padding: 0 10px;
     font-family: fantasy;
     color: #778899;
-  }
+}
 
-  li {
+li {
     list-style: none;
-  }
+}
 
-  /******TITLE******/
-  h1 {
+/******TITLE******/
+h1 {
     text-align: center;
     margin: 15px auto;
     padding: 5% auto;
     clear: both;
-  }
+}
 
-  /******Forms******/
-  .forms input {
+/******Forms******/
+.forms input {
     height: 20px;
     width: 30%;
     margin: 10px 5px;
@@ -74,18 +75,18 @@
     font-size: 1em;
     display: inline-block;
 
-  }
+}
 
-  .forms label {
+.forms label {
     padding: 13px 0;
     display: inline-block;
     text-align: left;
     float: left;
     clear: left;
     width: 175px;
-  }
+}
 
-  #blog-post textarea {
+#blog-post textarea {
     height: 300px;
     width: 75%;
     margin: 10px 5px;
@@ -96,34 +97,34 @@
     font-size: 1em;
     display: inline-block;
     padding: 5px 5px;
-  }
+}
 
-  #blog-post label {
+#blog-post label {
     padding: 13px 0;
     display: inline-block;
     text-align: left;
     float: left;
     clear: left;
     width: 175px;
-  }
+}
 
-  #blog-post type {
+#blog-post type {
     vertical-alin: top;
-  }
+}
 
-  /******Blog******/
-  li a {
+/******Blog******/
+li a {
     font-size: 1.2em;
-  }
+}
 
-  h2 {
+h2 {
     clear: both;
-  }
+}
 
-  .blog-post-content {
+.blog-post-content {
     margin: 5px 0 10px -40px;
-  }
+}
 
-  small {
+small {
     float: right;
-  }
+}
