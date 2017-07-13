@@ -25,6 +25,5 @@ class LoginForm(FlaskForm):
 
 class BlogForm(FlaskForm):
     blog_title = StringField('Title for your new blog', validators=[DataRequired("Please enter a name for your blog")])
-    blog_post = StringField('Your new blog:', widget=TextArea(),
-                            validators=[DataRequired("Oops! Looks like your blog is blank.")])
+    blog_post = StringField('Your new blog:', widget=TextArea(), validators=[DataRequired("Oops! Looks like your blog is blank.")])
     submit = SubmitField('Add Entry')

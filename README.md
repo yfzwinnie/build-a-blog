@@ -1,6 +1,7 @@
 # Build-a-blog
 ## A simple Flask Heroku app for LaunchCode LC-101
 
+
 _Implements_:
 
 - [Flask](http://flask.pocoo.org/) template rendering
@@ -20,7 +21,7 @@ _Implements_:
 
 ***
 
-# _UI Screenshots_: 
+# _UI Screenshots_:
 
 - ![]()
 - ![]()
@@ -34,6 +35,7 @@ _Implements_:
     - [LC-101 Blog App Part 2](http://education.launchcode.org/web-fundamentals/assignments/blogz/)
 - [Live Heroku demo of the app](http://winniezzzz.herokuapp.com/)
 
+- [Live demo of the app](http://winniezzzz.herokuapp.com/)
 ***
 
 (c) June 2017
