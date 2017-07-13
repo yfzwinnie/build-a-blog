@@ -99,7 +99,6 @@ def blog():
         blogs = Blog.query.order_by(Blog.timestamp.desc()).all()
         return render_template("blog.html", blogs=blogs)
     elif request.args.get('id'):
-<<<<<<< HEAD
         user_id = request.args.get('id')
         blog = Blog.query.filter_by(id=user_id).first()
         return render_template('blogpost.html', blog=blog)
@@ -107,15 +106,6 @@ def blog():
         user_id = request.args.get('user')
         user = User.query.filter_by(id=user_id).first()
         blogs = Blog.query.filter_by(owner_id=user_id).all()
-=======
-        id = request.args.get('id')
-        blog = Blog.query.filter_by(id=id).first()
-        return render_template('blogpost.html', blog=blog)
-    elif request.args.get('user'):
-        id = request.args.get('user')
-        user = User.query.filter_by(id=id).first()
-        blogs = Blog.query.filter_by(owner_id=id).all()
->>>>>>> master
         return render_template('user.html', blogs=blogs, user=user)
 
 
