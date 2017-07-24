@@ -12,7 +12,7 @@
                 <ul>
                     {% for user in users %}
                         <li>
-                          <a href="{{ url_for('blog', id=user.id) }}">{{ user.username }}</a>
+                          <a href="{{ url_for('blog', user=user.id )}}" class="author">{{ user.username }}</a>
                         </li>
                     {% endfor %}
                 </ul>
